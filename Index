@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Компьютерные сети — Подготовка к зачёту</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">🌐</div>
+      NetPrep
+    </a>
+    <nav>
+      <a class="nav-btn active" href="index.html">Главная</a>
+      <a class="nav-btn" href="questions.html">100 вопросов</a>
+      <a class="nav-btn" href="theory.html">Теория</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <div class="hero">
+    <div class="hero-badge">ПОДГОТОВКА К ЗАЧЁТУ</div>
+    <h1>Компьютерные сети</h1>
+    <p>Полный конспект по курсу: 100 вопросов с развёрнутыми ответами и теоретические разделы по всем уровням модели OSI/TCP-IP.</p>
+    <div class="stats-row">
+      <div class="stat-chip"><span class="n">100</span><span class="l">Вопросов</span></div>
+      <div class="stat-chip"><span class="n">7</span><span class="l">Разделов теории</span></div>
+      <div class="stat-chip"><span class="n">5</span><span class="l">Тем</span></div>
+    </div>
+  </div>
+
+  <div class="index-cards">
+    <a class="index-card" href="questions.html">
+      <div class="index-card-icon blue">❓</div>
+      <h2>100 вопросов и ответов</h2>
+      <p>Все вопросы к зачёту с подробными ответами. Фильтрация по темам, поиск по тексту, раскрываемые карточки.</p>
+      <div class="index-card-arrow">→</div>
+    </a>
+    <a class="index-card" href="theory.html">
+      <div class="index-card-icon purple">📖</div>
+      <h2>Теоретические разделы</h2>
+      <p>Структурированная теория: модели OSI и TCP/IP, прикладной уровень, транспортный, сетевой, канальный уровни, безопасность, формулы.</p>
+      <div class="index-card-arrow">→</div>
+    </a>
+  </div>
+
+  <div style="margin-top:3rem; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem;">
+    <div style="font-family:'Unbounded',sans-serif; font-size:14px; color:var(--accent); margin-bottom:1.25rem;">Темы вопросов</div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <span style="background:var(--tag-bg);color:var(--tag-text);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:13px;">🔵 Основы</span>
+      <span style="background:var(--tag-bg);color:var(--tag-text);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:13px;">🟣 Прикладной уровень</span>
+      <span style="background:var(--tag-bg);color:var(--tag-text);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:13px;">🟤 Транспортный уровень</span>
+      <span style="background:var(--tag-bg);color:var(--tag-text);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:13px;">🟢 Сетевой уровень</span>
+      <span style="background:var(--tag-bg);color:var(--tag-text);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:13px;">🟡 Канальный уровень</span>
+      <span style="background:var(--tag-bg);color:var(--tag-text);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:13px;">🔴 Безопасность</span>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
