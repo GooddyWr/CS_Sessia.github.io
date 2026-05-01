@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Теория — Компьютерные сети</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">🌐</div>
+      NetPrep
+    </a>
+    <nav>
+      <a class="nav-btn" href="index.html">Главная</a>
+      <a class="nav-btn" href="questions.html">100 вопросов</a>
+      <a class="nav-btn active" href="theory.html">Теория</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <div class="hero" style="padding:2rem 0 1.5rem;">
+    <div class="hero-badge">ТЕОРЕТИЧЕСКИЕ РАЗДЕЛЫ</div>
+    <h1>Теория по курсу</h1>
+    <p>Структурированные конспекты по разделам: модели, протоколы, таблицы, формулы.</p>
+  </div>
+
+  <div class="theory-nav" id="theory-nav"></div>
+  <div id="theory-sections"></div>
+</main>
+
+<script>
+const THEORY_DATA = [
+  {
+    id: "osi",
+    title: "Модели OSI и TCP/IP",
+    content: `
+    <div class="t-card">
+      <h3>Модель OSI — 7 уровней</h3>
+      <div class="layer-box">
+        <div class="layer-row"><span class="layer-num">7</span><span class="layer-name">Прикладной</span><span class="layer-proto">HTTP, FTP, SMTP, DNS, Telnet, SNMP</span><span class="layer-pdu">Данные</span></div>
+        <div class="layer-row"><span class="layer-num">6</span><span class="layer-name">Представления</span><span class="layer-proto">SSL/TLS, ASCII, JPEG, MPEG</span><span class="layer-pdu">Данные</span></div>
+        <div class="layer-row"><span class="layer-num">5</span><span class="layer-name">Сеансовый</span><span class="layer-proto">NetBIOS, RPC, SQL</span><span class="layer-pdu">Данные</span></div>
+        <div class="layer-row"><span class="layer-num">4</span><span class="layer-name">Транспортный</span><span class="layer-proto">TCP, UDP, QUIC</span><span class="layer-pdu">Сегмент</span></div>
+        <div class="layer-row"><span class="layer-num">3</span><span class="layer-name">Сетевой</span><span class="layer-proto">IP, ICMP, OSPF, BGP, RIP</span><span class="layer-pdu">Пакет</span></div>
+        <div class="layer-row"><span class="layer-num">2</span><span class="layer-name">Канальный</span><span class="layer-proto">Ethernet, Wi-Fi, PPP, ARP</span><span class="layer-pdu">Кадр</span></div>
+        <div class="layer-row"><span class="layer-num">1</span><span class="layer-name">Физический</span><span class="layer-proto">UTP, оптоволокно, радио</span><span class="layer-pdu">Бит</span></div>
+      </div>
+    </div>
+    <div class="t-card">
+      <h3>Модель TCP/IP (5-уровневая)</h3>
+      <div class="layer-box">
+        <div class="layer-row"><span class="layer-num">5</span><span class="layer-name">Прикладной</span><span class="layer-proto">HTTP, FTP, SMTP, DNS</span><span class="layer-pdu">Сообщение</span></div>
+        <div class="layer-row"><span class="layer-num">4</span><span class="layer-name">Транспортный</span><span class="layer-proto">TCP, UDP</span><span class="layer-pdu">Сегмент</span></div>
+        <div class="layer-row"><span class="layer-num">3</span><span class="layer-name">Сетевой</span><span class="layer-proto">IP, ICMP</span><span class="layer-pdu">Дейтаграмма</span></div>
+        <div class="layer-row"><span class="layer-num">2</span><span class="layer-name">Канальный</span><span class="layer-proto">Ethernet, Wi-Fi</span><span class="layer-pdu">Кадр</span></div>
+        <div class="layer-row"><span class="layer-num">1</span><span class="layer-name">Физический</span><span class="layer-proto">Медь, оптика, радио</span><span class="layer-pdu">Бит</span></div>
+      </div>
+    </div>
+    <div class="t-card">
+      <h3>Инкапсуляция данных</h3>
+      <p>При передаче каждый уровень добавляет свой заголовок (инкапсуляция). При получении заголовки снимаются по очереди (декапсуляция).</p>
+      <ul>
+        <li>Прикладной → <strong>Сообщение (Message)</strong></li>
+        <li>Транспортный → добавляет TCP/UDP заголовок → <strong>Сегмент</strong></li>
+        <li>Сетевой → добавляет IP заголовок → <strong>Пакет (Дейтаграмма)</strong></li>
+        <li>Канальный → добавляет MAC заголовок + трейлер → <strong>Кадр (Frame)</strong></li>
+        <li>Физический → <strong>Биты</strong></li>
+      </ul>
+    </div>`
+  },
+  {
+    id: "application",
+    title: "Прикладной уровень",
+    content: `
+    <div class="t-card">
+      <h3>Ключевые протоколы прикладного уровня</h3>
+      <table class="t-table">
+        <tr><th>Протокол</th><th>Порт</th><th>Транспорт</th><th>Назначение</th></tr>
+        <tr><td>HTTP</td><td>80</td><td>TCP</td><td>Веб-страницы</td></tr>
+        <tr><td>HTTPS</td><td>443</td><td>TCP+TLS</td><td>Безопасный HTTP</td></tr>
+        <tr><td>FTP</td><td>21/20</td><td>TCP</td><td>Передача файлов</td></tr>
+        <tr><td>SMTP</td><td>25/587</td><td>TCP</td><td>Отправка почты</td></tr>
+        <tr><td>IMAP</td><td>143/993</td><td>TCP</td><td>Получение почты (хранение на сервере)</td></tr>
+        <tr><td>POP3</td><td>110/995</td><td>TCP</td><td>Получение почты (скачать)</td></tr>
+        <tr><td>DNS</td><td>53</td><td>UDP (TCP для зонных передач)</td><td>Разрешение имён</td></tr>
+        <tr><td>DHCP</td><td>67/68</td><td>UDP</td><td>Автоматическая выдача IP</td></tr>
+        <tr><td>SSH</td><td>22</td><td>TCP</td><td>Защищённый удалённый доступ</td></tr>
+        <tr><td>Telnet</td><td>23</td><td>TCP</td><td>Удалённый доступ (небезопасный)</td></tr>
+        <tr><td>SNMP</td><td>161/162</td><td>UDP</td><td>Управление сетью</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>HTTP коды статуса</h3>
+      <table class="t-table">
+        <tr><th>Код</th><th>Значение</th></tr>
+        <tr><td>200 OK</td><td>Успешный запрос</td></tr>
+        <tr><td>301 Moved Permanently</td><td>Постоянное перенаправление</td></tr>
+        <tr><td>304 Not Modified</td><td>Кэш актуален</td></tr>
+        <tr><td>400 Bad Request</td><td>Неверный запрос</td></tr>
+        <tr><td>403 Forbidden</td><td>Доступ запрещён</td></tr>
+        <tr><td>404 Not Found</td><td>Ресурс не найден</td></tr>
+        <tr><td>500 Internal Server Error</td><td>Ошибка сервера</td></tr>
+        <tr><td>503 Service Unavailable</td><td>Сервис недоступен</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>DNS — процесс разрешения имени</h3>
+      <ul>
+        <li>1. Клиент запрашивает у локального DNS-сервера (провайдер)</li>
+        <li>2. Локальный DNS → Корневой сервер (кто отвечает за .com?)</li>
+        <li>3. Корневой → TLD-сервер .com</li>
+        <li>4. Локальный DNS → TLD-сервер (кто отвечает за example.com?)</li>
+        <li>5. TLD → Авторитетный сервер example.com</li>
+        <li>6. Авторитетный DNS → IP-адрес www.example.com</li>
+        <li>7. Ответ возвращается с кэшированием по TTL</li>
+      </ul>
+    </div>
+    <div class="t-card">
+      <h3>Сравнение SMTP vs HTTP</h3>
+      <table class="t-table">
+        <tr><th>Параметр</th><th>SMTP</th><th>HTTP</th></tr>
+        <tr><td>Направление</td><td>Push (проталкивание)</td><td>Pull (вытягивание)</td></tr>
+        <tr><td>Формат</td><td>ASCII</td><td>Любой</td></tr>
+        <tr><td>Объекты</td><td>Все в одном сообщении</td><td>По одному на запрос</td></tr>
+        <tr><td>Порт</td><td>25, 587</td><td>80, 443</td></tr>
+        <tr><td>Состояние</td><td>Сессия</td><td>Без состояния</td></tr>
+      </table>
+    </div>`
+  },
+  {
+    id: "transport",
+    title: "Транспортный уровень",
+    content: `
+    <div class="t-card">
+      <h3>TCP vs UDP</h3>
+      <table class="t-table">
+        <tr><th>Параметр</th><th>TCP</th><th>UDP</th></tr>
+        <tr><td>Установка соединения</td><td>Да (3-way handshake)</td><td>Нет</td></tr>
+        <tr><td>Надёжность</td><td>Гарантирована (ACK)</td><td>Нет</td></tr>
+        <tr><td>Порядок доставки</td><td>Гарантирован</td><td>Нет</td></tr>
+        <tr><td>Управление потоком</td><td>Да (rwnd)</td><td>Нет</td></tr>
+        <tr><td>Управление перегрузкой</td><td>Да (cwnd)</td><td>Нет</td></tr>
+        <tr><td>Размер заголовка</td><td>20–60 байт</td><td>8 байт</td></tr>
+        <tr><td>Скорость</td><td>Медленнее</td><td>Быстрее</td></tr>
+        <tr><td>Применение</td><td>HTTP, FTP, SMTP, SSH</td><td>DNS, VoIP, видео, DHCP</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>TCP — алгоритм управления перегрузкой (AIMD)</h3>
+      <ul>
+        <li><strong>Slow Start:</strong> cwnd = 1 MSS → удваивается каждый RTT до ssthresh</li>
+        <li><strong>Congestion Avoidance:</strong> cwnd += 1 MSS / RTT (линейно)</li>
+        <li><strong>3 дублирующих ACK:</strong> ssthresh = cwnd/2; cwnd = ssthresh (Fast Recovery)</li>
+        <li><strong>Таймаут:</strong> ssthresh = cwnd/2; cwnd = 1 MSS (Slow Start)</li>
+      </ul>
+    </div>
+    <div class="t-card">
+      <h3>Надёжная передача — механизмы</h3>
+      <table class="t-table">
+        <tr><th>Механизм</th><th>Назначение</th></tr>
+        <tr><td>Порядковые номера</td><td>Обнаружение потерь и дублей</td></tr>
+        <tr><td>ACK / NAK</td><td>Подтверждение или отказ</td></tr>
+        <tr><td>Таймер</td><td>Повторная передача при потере ACK</td></tr>
+        <tr><td>Окно (window)</td><td>Конвейеризация пакетов</td></tr>
+        <tr><td>GBN</td><td>Повтор с потерянного; получатель — in-order</td></tr>
+        <tr><td>SR</td><td>Повтор только потерянных; буфер у получателя</td></tr>
+      </table>
+    </div>`
+  },
+  {
+    id: "network",
+    title: "Сетевой уровень",
+    content: `
+    <div class="t-card">
+      <h3>IPv4 заголовок — ключевые поля</h3>
+      <table class="t-table">
+        <tr><th>Поле</th><th>Размер</th><th>Назначение</th></tr>
+        <tr><td>Version</td><td>4 бит</td><td>Версия IP (4)</td></tr>
+        <tr><td>TTL</td><td>8 бит</td><td>Предотвращение петель</td></tr>
+        <tr><td>Protocol</td><td>8 бит</td><td>Протокол (6=TCP, 17=UDP, 1=ICMP)</td></tr>
+        <tr><td>Source IP</td><td>32 бит</td><td>Адрес отправителя</td></tr>
+        <tr><td>Destination IP</td><td>32 бит</td><td>Адрес получателя</td></tr>
+        <tr><td>Header Checksum</td><td>16 бит</td><td>Контрольная сумма заголовка</td></tr>
+        <tr><td>Flags + Fragment Offset</td><td>3+13 бит</td><td>Управление фрагментацией</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>Классы IP-адресов и частные диапазоны</h3>
+      <table class="t-table">
+        <tr><th>Класс</th><th>Диапазон</th><th>Маска</th><th>Хосты</th></tr>
+        <tr><td>A</td><td>0.0.0.0 – 127.255.255.255</td><td>/8</td><td>~16 млн</td></tr>
+        <tr><td>B</td><td>128.0.0.0 – 191.255.255.255</td><td>/16</td><td>~65 тыс.</td></tr>
+        <tr><td>C</td><td>192.0.0.0 – 223.255.255.255</td><td>/24</td><td>254</td></tr>
+      </table>
+      <p style="margin-top:0.75rem">Частные адреса (RFC 1918): <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code></p>
+    </div>
+    <div class="t-card">
+      <h3>Протоколы маршрутизации</h3>
+      <table class="t-table">
+        <tr><th>Протокол</th><th>Тип</th><th>Алгоритм</th><th>Метрика</th><th>Область</th></tr>
+        <tr><td>RIP</td><td>IGP (Distance Vector)</td><td>Беллман-Форд</td><td>Хопы (max 15)</td><td>Малые сети</td></tr>
+        <tr><td>OSPF</td><td>IGP (Link-State)</td><td>Дейкстра</td><td>Стоимость</td><td>Крупные AS</td></tr>
+        <tr><td>BGP</td><td>EGP (Path Vector)</td><td>Path Vector</td><td>Политика</td><td>Между AS</td></tr>
+        <tr><td>EIGRP</td><td>IGP (Hybrid)</td><td>DUAL</td><td>Составная</td><td>Cisco-сети</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>DHCP — процесс DORA</h3>
+      <ul>
+        <li><strong>D</strong>iscover — клиент: «Есть ли DHCP-сервер?» (broadcast)</li>
+        <li><strong>O</strong>ffer — сервер: «Предлагаю IP X.X.X.X»</li>
+        <li><strong>R</strong>equest — клиент: «Принимаю IP X.X.X.X» (broadcast)</li>
+        <li><strong>A</strong>cknowledge — сервер: «Подтверждаю, выдаю маску, шлюз, DNS»</li>
+      </ul>
+    </div>`
+  },
+  {
+    id: "link",
+    title: "Канальный уровень и Ethernet",
+    content: `
+    <div class="t-card">
+      <h3>Стандарты Ethernet</h3>
+      <table class="t-table">
+        <tr><th>Стандарт</th><th>Скорость</th><th>Среда</th><th>Длина</th></tr>
+        <tr><td>10BASE-T</td><td>10 Мбит/с</td><td>UTP Cat3</td><td>100 м</td></tr>
+        <tr><td>100BASE-TX</td><td>100 Мбит/с</td><td>UTP Cat5</td><td>100 м</td></tr>
+        <tr><td>1000BASE-T</td><td>1 Гбит/с</td><td>UTP Cat5e</td><td>100 м</td></tr>
+        <tr><td>10GBASE-T</td><td>10 Гбит/с</td><td>UTP Cat6a</td><td>100 м</td></tr>
+        <tr><td>1000BASE-SX</td><td>1 Гбит/с</td><td>MMF оптика</td><td>550 м</td></tr>
+        <tr><td>10GBASE-LR</td><td>10 Гбит/с</td><td>SMF оптика</td><td>10 км</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>Сравнение Wi-Fi стандартов</h3>
+      <table class="t-table">
+        <tr><th>Стандарт</th><th>Год</th><th>Частота</th><th>Макс. скорость</th></tr>
+        <tr><td>802.11b</td><td>1999</td><td>2.4 ГГц</td><td>11 Мбит/с</td></tr>
+        <tr><td>802.11g</td><td>2003</td><td>2.4 ГГц</td><td>54 Мбит/с</td></tr>
+        <tr><td>802.11n (Wi-Fi 4)</td><td>2009</td><td>2.4/5 ГГц</td><td>600 Мбит/с</td></tr>
+        <tr><td>802.11ac (Wi-Fi 5)</td><td>2013</td><td>5 ГГц</td><td>3.5 Гбит/с</td></tr>
+        <tr><td>802.11ax (Wi-Fi 6)</td><td>2019</td><td>2.4/5/6 ГГц</td><td>9.6 Гбит/с</td></tr>
+      </table>
+    </div>
+    <div class="t-card">
+      <h3>Топологии сетей</h3>
+      <ul>
+        <li><strong>Шина (Bus)</strong> — все устройства на одном кабеле. Коллизии. Устарела.</li>
+        <li><strong>Звезда (Star)</strong> — все к центральному коммутатору. Современная LAN.</li>
+        <li><strong>Кольцо (Ring)</strong> — Token Ring. Устарело.</li>
+        <li><strong>Mesh</strong> — каждый со многими. WAN, беспроводные ячеистые сети.</li>
+        <li><strong>Иерархическая (Core-Distribution-Access)</strong> — корпоративные сети.</li>
+      </ul>
+    </div>`
+  },
+  {
+    id: "security",
+    title: "Сетевая безопасность",
+    content: `
+    <div class="t-card">
+      <h3>Основные свойства безопасности</h3>
+      <ul>
+        <li><strong>Конфиденциальность (Confidentiality)</strong> — только авторизованные лица могут читать данные</li>
+        <li><strong>Целостность (Integrity)</strong> — данные не были изменены в пути</li>
+        <li><strong>Аутентичность (Authentication)</strong> — подтверждение личности отправителя</li>
+        <li><strong>Доступность (Availability)</strong> — система доступна авторизованным пользователям</li>
+        <li><strong>Неотказуемость (Non-repudiation)</strong> — отправитель не может отрицать отправку</li>
+      </ul>
+    </div>
+    <div class="t-card">
+      <h3>TLS Handshake (упрощённо)</h3>
+      <ul>
+        <li>1. Client Hello — версия TLS, поддерживаемые шифры, случайное число</li>
+        <li>2. Server Hello — выбранный шифр, случайное число</li>
+        <li>3. Сертификат сервера (X.509)</li>
+        <li>4. Клиент проверяет сертификат, генерирует Pre-Master Secret</li>
+        <li>5. Оба вычисляют сессионный ключ</li>
+        <li>6. Finished — зашифрованная передача начата</li>
+      </ul>
+    </div>
+    <div class="t-card">
+      <h3>Типы атак и защита</h3>
+      <table class="t-table">
+        <tr><th>Атака</th><th>Описание</th><th>Защита</th></tr>
+        <tr><td>Sniffing</td><td>Перехват пакетов</td><td>Шифрование (TLS)</td></tr>
+        <tr><td>IP Spoofing</td><td>Подделка IP</td><td>Ingress filtering</td></tr>
+        <tr><td>ARP Spoofing</td><td>Подделка ARP</td><td>DAI, статический ARP</td></tr>
+        <tr><td>DNS Spoofing</td><td>Подделка DNS</td><td>DNSSEC, DoH</td></tr>
+        <tr><td>SYN Flood</td><td>Полуоткрытые соединения</td><td>SYN cookies</td></tr>
+        <tr><td>BGP Hijacking</td><td>Перехват маршрутов</td><td>RPKI</td></tr>
+        <tr><td>MITM</td><td>Перехват соединения</td><td>TLS + сертификаты</td></tr>
+      </table>
+    </div>`
+  },
+  {
+    id: "formulas",
+    title: "Формулы и расчёты",
+    content: `
+    <div class="t-card">
+      <h3>Задержки передачи</h3>
+      <code class="formula">d_total = d_proc + d_queue + d_trans + d_prop</code>
+      <ul>
+        <li><strong>Задержка передачи:</strong> d_trans = L/R (L — длина пакета в битах, R — скорость в бит/с)</li>
+        <li><strong>Задержка распространения:</strong> d_prop = d/s (d — расстояние в метрах, s ≈ 2×10⁸ м/с для медного кабеля)</li>
+      </ul>
+      <code class="formula">Пример: L=1500Б=12000бит, R=100Мбит/с → d_trans = 0.12 мс</code>
+    </div>
+    <div class="t-card">
+      <h3>HTTP — время загрузки страницы</h3>
+      <ul>
+        <li><strong>Непостоянное соединение:</strong> 2×RTT + d_trans (на объект)</li>
+        <li><strong>Постоянное + pipeline:</strong> RTT + RTT + ΣT_объектов</li>
+      </ul>
+      <code class="formula">RTT = время двойного пути сигнала (Round Trip Time)</code>
+    </div>
+    <div class="t-card">
+      <h3>Производительность TCP</h3>
+      <code class="formula">Throughput ≈ rwnd / RTT (при отсутствии потерь)</code>
+      <code class="formula">Throughput ≈ (1.22 × MSS) / (RTT × √p) (при потерях)</code>
+      <p>где MSS = Maximum Segment Size, p = вероятность потери</p>
+    </div>
+    <div class="t-card">
+      <h3>Коэффициент использования канала (pipeline)</h3>
+      <code class="formula">U = (N × L/R) / (RTT + L/R)</code>
+      <p>где N — размер окна (пакетов), L/R — время передачи одного пакета</p>
+    </div>
+    <div class="t-card">
+      <h3>Интенсивность трафика</h3>
+      <code class="formula">Traffic Intensity = L×a/R</code>
+      <p>где L — длина пакета (бит), a — частота поступления (пак/с), R — скорость канала (бит/с).</p>
+      <p>При <strong>La/R ≥ 1</strong> → очередь растёт бесконечно, пакеты теряются.</p>
+    </div>
+    <div class="t-card">
+      <h3>BitTorrent — скорость раздачи (tit-for-tat)</h3>
+      <p>Пир выбирает 4 соседей с максимальной скоростью передачи ему данных (<em>unchoked</em>). Каждые 30 сек случайно выбирается новый пир (<em>optimistically unchoked</em>) — шанс для новых участников.</p>
+    </div>`
+  }
+];
+
+function renderTheory() {
+  const nav = document.getElementById('theory-nav');
+  const sections = document.getElementById('theory-sections');
+
+  nav.innerHTML = THEORY_DATA.map((t, i) => `
+    <button class="t-nav-btn ${i===0?'active':''}" onclick="showTheory('${t.id}', this)">${t.title}</button>
+  `).join('');
+
+  sections.innerHTML = THEORY_DATA.map((t, i) => `
+    <div class="theory-section ${i===0?'active':''}" id="theory-${t.id}">
+      <div class="t-title">${t.title}</div>
+      ${t.content}
+    </div>
+  `).join('');
+}
+
+function showTheory(id, btn) {
+  document.querySelectorAll('.theory-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.t-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('theory-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+renderTheory();
+</script>
+</body>
+</html>
